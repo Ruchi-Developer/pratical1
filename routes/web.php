@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
-
+use App\Http\Controllers\GoogleAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +24,9 @@ Route::post('/', [AuthController::class, 'login']);
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('register', [AuthController::class, 'store']);
 
+//social media login 
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackGoogle']);
 
 Route::get('/dashboard', [AuthController::class, 'dashboard'])
     ->name('dashboard')
